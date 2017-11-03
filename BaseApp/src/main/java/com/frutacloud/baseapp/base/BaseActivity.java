@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import com.android.pc.ioc.inject.InjectInit;
 import com.frutacloud.baseapp.netbase.NetField;
 import com.frutacloud.baseapp.utils.Tools;
+import com.frutacloud.baseapp.weight.XLoadingDialog;
+import com.frutacloud.baseapp.weight.XToast;
 
 import java.lang.ref.WeakReference;
 
@@ -17,10 +19,11 @@ import java.lang.ref.WeakReference;
  */
 
 public abstract class BaseActivity extends AppCompatActivity {
+
+    /* 上下文*/
     protected Activity mActivity;
-    /**
-     * Handler处理
-     */
+
+    /* Handler处理*/
     protected HandlerRequest handle_request = new HandlerRequest(mActivity);
 
     @InjectInit
@@ -29,11 +32,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * Toast提示
+     * 网络请求失败
+     *
+     * @param sign   签名
+     * @param bundle 内容
      */
-    protected void showToast(String content) {
-        Tools.Toast(this, content);
-    }
+    protected abstract void requestFail(String sign, Bundle bundle);
 
     /**
      * 网络请求成功
@@ -44,12 +48,58 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void requestSuccess(String sign, Bundle bundle);
 
     /**
-     * 网络请求失败
-     *
-     * @param sign   签名
-     * @param bundle 内容
+     * Toast提示错误
      */
-    protected abstract void requestFail(String sign, Bundle bundle);
+    protected void showToastError(String msg) {
+        XToast.error(msg);
+    }
+
+    /**
+     * Toast提示正确
+     */
+    protected void showToastSuccess(String msg) {
+        XToast.success(msg);
+    }
+
+    /**
+     * Toast提示信息
+     */
+    protected void showToastInfo(String msg) {
+        XToast.info(msg);
+    }
+
+    /**
+     * Toast提示警告
+     */
+    protected void showToastWarning(String msg) {
+        XToast.warning(msg);
+    }
+
+    /**
+     * Toast 正常显示
+     */
+    protected void showToast(String msg) {
+        XToast.normal(msg);
+    }
+
+    /**
+     * @param message(显示内容)
+     * @param isCancel(点击是否可取消) 显示加载框 点击不可取消的loading
+     */
+    protected void showXLoading(String message, boolean isCancel) {
+        if (Tools.isNull(message)) {
+            XLoadingDialog.with(this).setCanceled(isCancel).show();
+        } else {
+            XLoadingDialog.with(this).setCanceled(isCancel).setMessage(message).show();
+        }
+    }
+
+    /**
+     * 移除加载框
+     */
+    protected void dismissXloading() {
+        XLoadingDialog.with(this).dismiss();
+    }
 
     protected class HandlerRequest extends Handler {
         WeakReference<Activity> reference;
@@ -72,5 +122,4 @@ public abstract class BaseActivity extends AppCompatActivity {
             System.setProperty("http.keepAlive", "false");
         }
     }
-
 }

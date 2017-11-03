@@ -5,10 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -36,6 +40,21 @@ import java.util.Map;
  */
 
 public class Tools {
+
+    private static Context context;
+
+    public static void init(Context context) {
+        Tools.context = context;
+    }
+
+    public static Context getContext() {
+        synchronized (Tools.class) {
+            if (Tools.context == null)
+                throw new NullPointerException("Call Tools.init(context) within your Application onCreate() method." +
+                        "Or extends XApplication");
+            return Tools.context.getApplicationContext();
+        }
+    }
 
     /**
      * 判断 列表是否为空
@@ -526,6 +545,29 @@ public class Tools {
         if (imm != null) {
             imm.hideSoftInputFromWindow(ac.getWindow().getDecorView().getWindowToken(), 0);
         }
+    }
+
+    /**
+     * getDrawable过时方法处理
+     *
+     * @param id
+     * @return
+     */
+    public static Drawable getDrawable(Context context, int id) {
+        return ContextCompat.getDrawable(context, id);
+    }
+
+    /**
+     * setBackgroundDrawable过时方法处理
+     *
+     * @param view
+     * @param drawable
+     */
+    public static void setBackground(@NonNull View view, Drawable drawable) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+            view.setBackground(drawable);
+        else
+            view.setBackgroundDrawable(drawable);
     }
 
     /**

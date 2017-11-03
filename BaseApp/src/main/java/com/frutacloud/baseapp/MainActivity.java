@@ -20,7 +20,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        mActivity = this;
         initView();
 
     }
@@ -34,7 +34,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void requestSuccess(String sign, Bundle bundle) {
         Log.i(TAG, "requestSuccess");
-
+        dismissXloading();
         if (sign == NetField.TEST_LOGIN) {
             UserBean bean = (UserBean) bundle.getSerializable(NetField.RES);
             ErrorMsg error = (ErrorMsg) bundle.getSerializable(NetField.MSG);
@@ -45,7 +45,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
             if (error != null) {
                 Log.i(TAG, "返回errorMsg");
-                showToast(error.getErrmsg());
+                showToastInfo(error.getErrmsg());
             }
         }
     }
@@ -59,6 +59,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login:
+                showXLoading("", false);
                 NetLogin.getInstance().getData(handle_request, "admin@cloudinward.com", "admin@cloudinward.com");
                 break;
         }

@@ -5,6 +5,7 @@ import android.widget.ImageView;
 
 import com.android.pc.ioc.app.Ioc;
 import com.frutacloud.baseapp.utils.FileUtil;
+import com.frutacloud.baseapp.utils.Tools;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -41,11 +42,13 @@ public class App extends Application {
     public void onCreate() {
 
         Ioc.getIoc().init(this); //注入LoonAndroid框架支持
+        Tools.init(this);
         super.onCreate();
 
         FileUtil.getInstance().createFiles("BaseApp"); //创建一个文件
         initImageLoader();
     }
+
 
     /* *
      * 初始化imageLoader
