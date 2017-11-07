@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.pc.ioc.inject.InjectInit;
 import com.frutacloud.baseapp.R;
 import com.frutacloud.baseapp.netbase.NetField;
 import com.frutacloud.baseapp.utils.Tools;
