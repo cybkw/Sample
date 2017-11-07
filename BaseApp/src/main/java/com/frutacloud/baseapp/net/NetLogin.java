@@ -63,6 +63,7 @@ public class NetLogin {
         //params.put("autoLogin", "false");
         //params.put("apiinfo", defData);
 
+
 		/* 网络请求 */
         FastHttp.ajax(NetField.TEST_LOGIN, params, new AjaxCallBack() {
 

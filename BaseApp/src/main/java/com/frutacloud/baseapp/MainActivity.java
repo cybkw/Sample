@@ -22,7 +22,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
         mActivity = this;
         initView();
-
     }
 
     private void initView() {
