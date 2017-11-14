@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.frutacloud.rxjavaretrofitsample.MainActivity">
+
+    <EditText
+        android:id="@+id/et_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <Button
+        android:id="@+id/btn_fy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="翻译" />
+
+
+    <Button
+        android:id="@+id/btn_interval"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发送轮询请求" />
+
+    <Button
+        android:id="@+id/btn_request"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发送普通请求" />
+
+    <Button
+        android:id="@+id/btn_map"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="变换类型操作符map" />
+
+    <Button
+        android:id="@+id/btn_flatmap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="嵌套网络请求flatmap" />
+
+    <Button
+        android:id="@+id/btn_concat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="合并发送事件" />
+
+</LinearLayout>

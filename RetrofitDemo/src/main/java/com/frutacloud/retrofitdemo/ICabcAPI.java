@@ -35,17 +35,22 @@ public interface ICabcAPI {
      * 服务器地址: 生产环境
      */
     public static final String HOST = "http://etdemo.cloudinward.com";
-    // 注解里传入 网络请求 的部分URL地址
-    // Retrofit把网络请求的URL分成了两部分：一部分放在Retrofit对象里，另一部分放在网络请求接口里
-    // 如果接口里的url是一个完整的网址，那么放在Retrofit对象里的URL可以忽略
-    // getCall()是接受网络请求数据的方法
     /**
      * 登录 Post /ws/token/login
      */
     public static final String LOGIN = HOST + "/ws/token/login";
 
+    /**
+     * @Query和@QueryMap 作用：用于 @GET 方法的查询参数（Query = Url 中 ‘?’ 后面的 key-value）
+     * <p>
+     * 如：url = http://www.println.net/?cate=android，其中，Query = cate
+     */
     @GET(GET_URL)
     Call<WordBean> getCall(@Query("a") String a, @Query("f") String f, @Query("t") String t, @Query("w") String word);
+    // 注解里传入 网络请求 的部分URL地址
+    // Retrofit把网络请求的URL分成了两部分：一部分放在Retrofit对象里，另一部分放在网络请求接口里
+    // 如果接口里的url是一个完整的网址，那么放在Retrofit对象里的URL可以忽略
+    // getCall()是接受网络请求数据的方法
 
     /**
      * method：网络请求的方法（区分大小写）

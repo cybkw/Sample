@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.IOException;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -75,7 +77,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-                Log.i(TAG, response.raw().toString());
+                try {
+                    String string = new String(response.body().bytes()); //获得返回的原始json字符串
+                    Log.i(TAG, string);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
@@ -112,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<WordBean> call, Response<WordBean> response) {
 
                 String str = response.body().getContent().toString();
-                text.setText(response.body().getContent().getWord_mean().toString());
+                text.setText(response.body().getContent().toString());
                 Log.i(TAG, str);
             }
 
