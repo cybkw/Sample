@@ -48,6 +48,18 @@ public class TranslationBean {
         private String ph_tts_mp3;
         private List<String> word_mean;
 
+        @Override
+        public String toString() {
+            return "ContentBean{" +
+                    "ph_en='" + ph_en + '\'' +
+                    ", ph_am='" + ph_am + '\'' +
+                    ", ph_en_mp3='" + ph_en_mp3 + '\'' +
+                    ", ph_am_mp3='" + ph_am_mp3 + '\'' +
+                    ", ph_tts_mp3='" + ph_tts_mp3 + '\'' +
+                    ", word_mean=" + word_mean +
+                    '}';
+        }
+
         public String getPh_en() {
             return ph_en;
         }

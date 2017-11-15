@@ -11,6 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 
     <Button
         android:id="@+id/btn_fy"
@@ -48,5 +53,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="合并发送事件" />
+
+    <Button
+        android:id="@+id/btn_delay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="延迟被观察者发送事件" />
+
+    <Button
+        android:id="@+id/btn_repeatWhen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="repeatWhen轮询网络请求" />
+
+    <Button
+        android:id="@+id/btn_repeatRequest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="网络请求出错重连" />
 
 </LinearLayout>
