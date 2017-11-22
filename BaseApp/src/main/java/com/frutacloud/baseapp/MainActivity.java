@@ -1,5 +1,6 @@
 package com.frutacloud.baseapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,13 +9,14 @@ import android.widget.Button;
 import com.frutacloud.baseapp.base.BaseActivity;
 import com.frutacloud.baseapp.entity.ErrorMsg;
 import com.frutacloud.baseapp.entity.UserBean;
+import com.frutacloud.baseapp.http.NetField;
 import com.frutacloud.baseapp.net.NetLogin;
-import com.frutacloud.baseapp.netbase.NetField;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = "MainActivity";
     private Button btn_login;
+    private Button btn_goView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +24,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
         mActivity = this;
         initView();
+
     }
 
     private void initView() {
         btn_login = (Button) findViewById(R.id.login);
+        btn_goView = (Button) findViewById(R.id.btn_goView);
 
+        btn_goView.setOnClickListener(this);
         btn_login.setOnClickListener(this);
     }
 
@@ -51,6 +56,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void requestFail(String sign, Bundle bundle) {
+
         showToast("网络请求失败");
     }
 
@@ -60,6 +66,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.login:
                 showXLoading("", false);
                 NetLogin.getInstance().getData(handle_request, "admin@cloudinward.com", "admin@cloudinward.com");
+                break;
+            case R.id.btn_goView:
+                startActivity(new Intent(this, ViewPagerAc.class));
                 break;
         }
     }

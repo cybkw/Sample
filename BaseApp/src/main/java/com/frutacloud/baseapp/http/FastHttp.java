@@ -1,4 +1,4 @@
-package com.frutacloud.baseapp.netbase;
+package com.frutacloud.baseapp.http;
 
 import android.annotation.SuppressLint;
 import android.os.Build;

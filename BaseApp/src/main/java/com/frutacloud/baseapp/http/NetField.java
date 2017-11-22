@@ -1,4 +1,4 @@
-package com.frutacloud.baseapp.netbase;
+package com.frutacloud.baseapp.http;
 
 /**
  * 网络请求全局变量

@@ -1,4 +1,4 @@
-package com.frutacloud.baseapp.netbase;
+package com.frutacloud.baseapp.http;
 
 import java.io.File;
 import java.util.HashMap;

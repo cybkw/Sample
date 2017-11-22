@@ -20,8 +20,6 @@ import android.widget.Toast;
 
 import com.frutacloud.baseapp.base.BaseField;
 
-import org.apache.http.util.EncodingUtils;
-
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.security.MessageDigest;
@@ -419,7 +417,7 @@ public class Tools {
             byte[] buffer = new byte[lenght];
             // 将文件中的数据读到byte数组中
             in.read(buffer);
-            result = EncodingUtils.getString(buffer, "utf-8");
+//            result = EncodingUtils.getString(buffer, "utf-8");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -444,7 +442,7 @@ public class Tools {
             byte[] buffer = new byte[lenght];
             // 将文件中的数据读到byte数组中
             in.read(buffer);
-            result = EncodingUtils.getString(buffer, "utf-8");
+            // result = EncodingUtils.getString(buffer, "utf-8");
         } catch (Exception e) {
             e.printStackTrace();
         }

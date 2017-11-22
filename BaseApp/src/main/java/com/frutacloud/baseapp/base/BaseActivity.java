@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import com.android.pc.ioc.inject.InjectInit;
 import com.frutacloud.baseapp.R;
-import com.frutacloud.baseapp.netbase.NetField;
+import com.frutacloud.baseapp.http.NetField;
 import com.frutacloud.baseapp.utils.Tools;
 import com.frutacloud.baseapp.weight.XLoadingDialog;
 import com.frutacloud.baseapp.weight.XToast;
@@ -29,6 +29,7 @@ public abstract class BaseActivity extends AppCompatActivity implements SlidingP
 
     /* 上下文*/
     protected Activity mActivity;
+
 
     /* Handler处理*/
     protected HandlerRequest handle_request = new HandlerRequest(mActivity);

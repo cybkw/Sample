@@ -1,4 +1,4 @@
-package com.frutacloud.baseapp.netbase;
+package com.frutacloud.baseapp.http;
 
 /**
  * 异步请求回调类

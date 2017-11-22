@@ -1,4 +1,4 @@
-package com.frutacloud.baseapp.netbase;
+package com.frutacloud.baseapp.http;
 
 import com.android.pc.ioc.app.Ioc;
 import com.android.pc.util.Handler_File;

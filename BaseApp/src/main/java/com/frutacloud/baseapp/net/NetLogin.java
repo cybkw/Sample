@@ -7,10 +7,10 @@ import android.util.Log;
 
 import com.frutacloud.baseapp.entity.ErrorMsg;
 import com.frutacloud.baseapp.entity.UserBean;
-import com.frutacloud.baseapp.netbase.AjaxCallBack;
-import com.frutacloud.baseapp.netbase.FastHttp;
-import com.frutacloud.baseapp.netbase.NetField;
-import com.frutacloud.baseapp.netbase.ResponseEntity;
+import com.frutacloud.baseapp.http.AjaxCallBack;
+import com.frutacloud.baseapp.http.FastHttp;
+import com.frutacloud.baseapp.http.NetField;
+import com.frutacloud.baseapp.http.ResponseEntity;
 import com.frutacloud.baseapp.utils.Tools;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

@@ -1,6 +1,8 @@
 package com.frutacloud.baseapp.base;
 
 import android.app.Application;
+import android.content.ComponentCallbacks2;
+import android.content.res.Configuration;
 import android.widget.ImageView;
 
 import com.android.pc.ioc.app.Ioc;
@@ -47,12 +49,31 @@ public class App extends Application {
 
         FileUtil.getInstance().createFiles("BaseApp"); //创建一个文件
         initImageLoader();
+
+
+        registerComponentCallbacks(new ComponentCallbacks2() {
+            @Override
+            public void onTrimMemory(int level) {
+                if (level >= ComponentCallbacks2.TRIM_MEMORY_MODERATE) {
+                }
+            }
+
+            @Override
+            public void onConfigurationChanged(Configuration newConfig) {
+
+            }
+
+            @Override
+            public void onLowMemory() {
+
+            }
+        });
     }
 
 
     /* *
-     * 初始化imageLoader
-     */
+         * 初始化imageLoader
+         */
     private void initImageLoader() {
         ImageLoaderConfiguration imageLoaderConfiguration = new ImageLoaderConfiguration.Builder(this).threadPriority(Thread.NORM_PRIORITY)
                 .denyCacheImageMultipleSizesInMemory().diskCacheFileNameGenerator(new Md5FileNameGenerator())

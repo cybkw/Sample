@@ -1,4 +1,4 @@
-package com.frutacloud.baseapp.netbase;
+package com.frutacloud.baseapp.http;
 
 /*
  * Author: pan Email:gdpancheng@gmail.com
