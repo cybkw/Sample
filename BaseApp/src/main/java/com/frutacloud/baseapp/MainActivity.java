@@ -11,6 +11,7 @@ import com.frutacloud.baseapp.entity.ErrorMsg;
 import com.frutacloud.baseapp.entity.UserBean;
 import com.frutacloud.baseapp.http.NetField;
 import com.frutacloud.baseapp.net.NetLogin;
+import com.frutacloud.baseapp.ui.login.LoginActivity;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -68,8 +69,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 NetLogin.getInstance().getData(handle_request, "admin@cloudinward.com", "admin@cloudinward.com");
                 break;
             case R.id.btn_goView:
-                startActivity(new Intent(this, ViewPagerAc.class));
+                startActivity(new Intent(this, LoginActivity.class));
                 break;
         }
+    }
+
+    @Override
+    protected boolean isSupportSwipeBack() {
+        return false;
     }
 }

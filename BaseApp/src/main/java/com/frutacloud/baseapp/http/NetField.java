@@ -3,7 +3,6 @@ package com.frutacloud.baseapp.http;
 /**
  * 网络请求全局变量
  *
- * @author ZhangYi 2014年7月1日 下午7:48:39
  */
 public class NetField {
     public static final String RES = "r";  //返回结果标识

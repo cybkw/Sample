@@ -183,6 +183,7 @@ public class XToast {
         ImageView toastIcon = (ImageView) toastLayout.findViewById(R.id.xtoast_icon);
         TextView toastText = (TextView) toastLayout.findViewById(R.id.xtoast_text);
 
+
         Drawable drawableFrame = Tools.getDrawable(context, R.drawable.xtoast_frame);
         drawableFrame.setColorFilter(new PorterDuffColorFilter(tintColor, PorterDuff.Mode.SRC_IN));
         Tools.setBackground(toastLayout, drawableFrame);
@@ -192,6 +193,7 @@ public class XToast {
         } else {
             Tools.setBackground(toastIcon, icon);
         }
+
 
         toastText.setTextColor(textColor);
         toastText.setText(message);

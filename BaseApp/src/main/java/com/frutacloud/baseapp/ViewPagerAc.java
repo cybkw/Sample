@@ -51,7 +51,7 @@ public class ViewPagerAc extends BaseActivity {
 
         for (int i = 0; i < mImgUrls.size(); i++) {
             ImageView view = new ImageView(this);
-            view.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            view.setScaleType(ImageView.ScaleType.CENTER_CROP);
             App.loadImage(mImgUrls.get(i).toString(), view);
             image.add(view);
         }
