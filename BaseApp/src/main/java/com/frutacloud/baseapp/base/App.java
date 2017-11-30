@@ -1,11 +1,12 @@
 package com.frutacloud.baseapp.base;
 
 import android.app.Application;
-import android.content.ComponentCallbacks2;
-import android.content.res.Configuration;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.widget.ImageView;
 
 import com.android.pc.ioc.app.Ioc;
+import com.frutacloud.baseapp.exception.AppUncaughtExceptionHandler;
 import com.frutacloud.baseapp.utils.FileUtil;
 import com.frutacloud.baseapp.utils.Tools;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -26,6 +27,7 @@ public class App extends Application {
      */
     public static ImageLoader IMAGE_LOADER;
     private static DisplayImageOptions IMAGE_OPTIONS;
+    private static App mInstance = null;
 
     /**
      * 下载图片
@@ -40,34 +42,29 @@ public class App extends Application {
         IMAGE_LOADER.displayImage(uri, imageView, IMAGE_OPTIONS);
     }
 
+    public static App getInstance() {
+        if (mInstance == null) {
+            throw new IllegalStateException("Application is not created.");
+        }
+        return mInstance;
+    }
+
     @Override
     public void onCreate() {
 
+        mInstance = this;
         Ioc.getIoc().init(this); //注入LoonAndroid框架支持
         Tools.init(this);
         super.onCreate();
 
-        FileUtil.getInstance().createFiles("BaseApp"); //创建一个文件
+        // 初始化文件目录
+        FileUtil.getInstance().createFiles("BaseApp"); //创建一个文件夹
         initImageLoader();
 
 
-        registerComponentCallbacks(new ComponentCallbacks2() {
-            @Override
-            public void onTrimMemory(int level) {
-                if (level >= ComponentCallbacks2.TRIM_MEMORY_MODERATE) {
-                }
-            }
-
-            @Override
-            public void onConfigurationChanged(Configuration newConfig) {
-
-            }
-
-            @Override
-            public void onLowMemory() {
-
-            }
-        });
+        // 捕捉异常
+        AppUncaughtExceptionHandler crashHandler = AppUncaughtExceptionHandler.getInstance();
+        crashHandler.init(getApplicationContext());
     }
 
 
@@ -81,4 +78,29 @@ public class App extends Application {
         IMAGE_LOADER = ImageLoader.getInstance();
         IMAGE_LOADER.init(imageLoaderConfiguration);
     }
+
+    /**
+     * 获取自身App安装包信息
+     *
+     * @return
+     */
+    public PackageInfo getLocalPackageInfo() {
+        return getPackageInfo(getPackageName());
+    }
+
+    /**
+     * 获取App安装包信息
+     *
+     * @return
+     */
+    public PackageInfo getPackageInfo(String packageName) {
+        PackageInfo info = null;
+        try {
+            info = getPackageManager().getPackageInfo(packageName, 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return info;
+    }
+
 }
