@@ -1,7 +1,9 @@
 package com.frutacloud.socketsample;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,7 +23,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        socketConnection();
+        findViewById(R.id.jump).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, SocketClientAc.class);
+                startActivity(i);
+            }
+        });
+
+        // socketConnection();
     }
 
     private void socketConnection() {
